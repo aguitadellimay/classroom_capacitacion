@@ -1,0 +1,296 @@
+@import "tailwindcss";
+
+/* Tailwind CSS v4 class-based dark mode variant */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  html {
+    font-family: 'Fredoka', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Smooth color transitions when toggling dark mode */
+  body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+/* Keyframe animations for kids' video-game feel */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+}
+
+@keyframes bounceGentle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(251, 191, 36, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(251, 191, 36, 0.95);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  80% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-bounce-gentle {
+  animation: bounceGentle 2s ease-in-out infinite;
+}
+
+.animate-wiggle {
+  animation: wiggle 0.6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s infinite;
+}
+
+.animate-pop-in {
+  animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Video game chunky 3D buttons */
+.btn-game-primary {
+  transition: all 0.15s ease-out;
+  box-shadow: 0 6px 0 #1e40af, 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+.btn-game-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 #1e40af, 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+.btn-game-primary:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #1e40af, 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.btn-game-green {
+  transition: all 0.15s ease-out;
+  box-shadow: 0 6px 0 #15803d, 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+.btn-game-green:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 #15803d, 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+.btn-game-green:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #15803d, 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.btn-game-amber {
+  transition: all 0.15s ease-out;
+  box-shadow: 0 6px 0 #b45309, 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+.btn-game-amber:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 #b45309, 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+.btn-game-amber:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #b45309, 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 9999px;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 9999px;
+  border: 2px solid #f1f5f9;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+  border: 2px solid #1e293b;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Hide print portal on screen */
+#certificate-print-portal {
+  display: none;
+}
+
+/* ========================================================= */
+/* HARMONIOUS DARK MODE THEME PALETTE FOR EYE COMFORT        */
+/* ========================================================= */
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background-color: #0b1120;
+  color: #f1f5f9;
+}
+
+.dark .bg-white {
+  background-color: #1e293b;
+  color: #f1f5f9;
+}
+
+.dark .bg-slate-50 {
+  background-color: #0f172a;
+  color: #f1f5f9;
+}
+
+.dark .bg-slate-100 {
+  background-color: #1e293b;
+  color: #f1f5f9;
+}
+
+.dark .text-slate-900,
+.dark .text-slate-800 {
+  color: #f8fafc;
+}
+
+.dark .text-slate-700,
+.dark .text-slate-600 {
+  color: #cbd5e1;
+}
+
+.dark .border-slate-200,
+.dark .border-slate-300 {
+  border-color: #334155;
+}
+
+/* ========================================================= */
+/* DEFINITIVE SINGLE-PAGE A4 PRINT CONFIGURATION             */
+/* ========================================================= */
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media print {
+  /* 1. Base page setup: strictly 1 physical A4 portrait sheet (210mm x 297mm) */
+  html,
+  html.dark,
+  body,
+  html.dark body {
+    width: 210mm !important;
+    height: 297mm !important;
+    max-width: 210mm !important;
+    max-height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    overflow: hidden !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* 2. COMPLETELY COLLAPSE AND HIDE THE ENTIRE INTERACTIVE WEB APP */
+  /* This prevents the 10-level map and modals from taking up layout flow / multi-page heights */
+  #app-screen-content,
+  .no-print,
+  .no-print * {
+    display: none !important;
+  }
+
+  /* 3. SHOW ONLY THE DEDICATED PRINT PORTAL - PERFECTLY CENTERED ON A4 */
+  #certificate-print-portal {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    max-width: 210mm !important;
+    max-height: 297mm !important;
+    margin: 0 !important;
+    padding: 10mm !important;
+    box-sizing: border-box !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    overflow: hidden !important;
+    page-break-before: avoid !important;
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
+    break-before: avoid !important;
+    break-after: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Force light theme colors on all print certificate elements */
+  #certificate-print-portal,
+  #certificate-print-portal * {
+    color-scheme: light !important;
+  }
+
+  /* 4. DIPLOMA SHEET SIZED CALIBRATED IN MM */
+  .diploma-print-sheet {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    width: 190mm !important;
+    height: 277mm !important;
+    max-width: 190mm !important;
+    max-height: 277mm !important;
+    margin: 0 auto !important;
+    padding: 6mm 8mm !important;
+    box-sizing: border-box !important;
+    background-color: #fffdf5 !important;
+    color: #0f172a !important;
+    border: 4px double #d97706 !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+}
+
