@@ -19,6 +19,8 @@ export interface UserProgress {
   unlockedBadges: string[];
   finalScore?: number;
   soundEnabled: boolean;
+  foundCampusSecrets?: string[];
+  campusBonusStars?: number;
 }
 
 export interface QuestionOption {

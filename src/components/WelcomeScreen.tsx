@@ -6,14 +6,14 @@ import { GRADES_INFO, formatGradeText } from '../utils/gradeAdapter';
 import { Clasito } from './Clasito';
 import { ThemeToggle } from './ThemeToggle';
 import { soundManager } from '../utils/sound';
-import { Sparkles, ArrowRight, UserCheck, RefreshCw } from 'lucide-react';
+import { Sparkles, UserCheck, RefreshCw } from 'lucide-react';
 
 interface WelcomeScreenProps {
   initialProgress: UserProgress | null;
   theme: Theme;
   onToggleTheme: () => void;
-  onStart: (name: string, grade: Grade) => void;
-  onContinue: () => void;
+  onStart: (name: string, grade: Grade, chosenAdventure?: 'classroom' | 'lab') => void;
+  onContinue: (chosenAdventure?: 'classroom' | 'lab') => void;
   onReset: () => void;
 }
 
@@ -27,6 +27,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
 }) => {
   const [name, setName] = useState(initialProgress?.name || '');
   const [selectedGrade, setSelectedGrade] = useState<Grade>(initialProgress?.grade || 1);
+  const [chosenAdventure, setChosenAdventure] = useState<'classroom' | 'lab'>('classroom');
   const [error, setError] = useState('');
 
   const hasExistingSession = Boolean(initialProgress?.name);
@@ -39,7 +40,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
       return;
     }
     soundManager.playSuccess();
-    onStart(name.trim(), selectedGrade);
+    onStart(name.trim(), selectedGrade, chosenAdventure);
   };
 
   const currentGradeInfo = GRADES_INFO[selectedGrade];
@@ -116,18 +117,29 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
               </div>
             </div>
 
-            <div className="flex gap-2 w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
               <button
                 type="button"
                 onClick={() => {
                   soundManager.playSuccess();
-                  onContinue();
+                  onContinue('classroom');
                 }}
-                className="flex-1 sm:flex-initial btn-game-green bg-emerald-500 hover:bg-emerald-600 text-white font-black px-5 py-3 rounded-2xl flex items-center justify-center gap-2 text-sm sm:text-base shadow-lg cursor-pointer"
+                className="btn-game-primary bg-indigo-600 hover:bg-indigo-700 text-white font-black px-4 py-2.5 rounded-2xl flex items-center justify-center gap-1.5 text-xs sm:text-sm shadow-md cursor-pointer"
               >
-                <span>CONTINUAR</span>
-                <ArrowRight className="w-5 h-5" />
+                <span>🚀 Classroom</span>
               </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  soundManager.playSuccess();
+                  onContinue('lab');
+                }}
+                className="btn-game-green bg-emerald-600 hover:bg-emerald-700 text-white font-black px-4 py-2.5 rounded-2xl flex items-center justify-center gap-1.5 text-xs sm:text-sm shadow-md cursor-pointer"
+              >
+                <span>🖥️ Guardianes de la Sala</span>
+              </button>
+
               <button
                 type="button"
                 onClick={() => {
@@ -135,9 +147,9 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
                   onReset();
                 }}
                 title="Cambiar de aventurero o empezar de cero"
-                className="p-3 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 rounded-2xl transition cursor-pointer"
+                className="p-2.5 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 rounded-2xl transition cursor-pointer self-center sm:self-auto"
               >
-                <RefreshCw className="w-5 h-5" />
+                <RefreshCw className="w-4 h-4" />
               </button>
             </div>
           </div>
@@ -211,6 +223,54 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
                   {currentGradeInfo.description}
                 </span>
               </div>
+            </div>
+          </div>
+
+          {/* Starting Adventure Choice */}
+          <div>
+            <label className="block text-sm sm:text-base font-extrabold text-slate-700 dark:text-slate-200 mb-2">
+              🗺️ Elegí por dónde querés empezar:
+            </label>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <button
+                type="button"
+                onClick={() => setChosenAdventure('classroom')}
+                className={`p-3.5 rounded-2xl border-3 text-left transition flex items-center gap-3 cursor-pointer ${
+                  chosenAdventure === 'classroom'
+                    ? 'bg-indigo-50 dark:bg-indigo-950/40 border-indigo-600 dark:border-indigo-400 shadow-md ring-2 ring-indigo-400/30'
+                    : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:border-slate-300'
+                }`}
+              >
+                <span className="text-3xl">🚀</span>
+                <div>
+                  <h4 className="text-sm font-black text-slate-900 dark:text-white leading-tight">
+                    Mi Aventura en Classroom
+                  </h4>
+                  <p className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 mt-0.5">
+                    10 Niveles • Tareas y entregas
+                  </p>
+                </div>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setChosenAdventure('lab')}
+                className={`p-3.5 rounded-2xl border-3 text-left transition flex items-center gap-3 cursor-pointer ${
+                  chosenAdventure === 'lab'
+                    ? 'bg-teal-50 dark:bg-teal-950/40 border-teal-600 dark:border-teal-400 shadow-md ring-2 ring-teal-400/30'
+                    : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:border-slate-300'
+                }`}
+              >
+                <span className="text-3xl">🖥️</span>
+                <div>
+                  <h4 className="text-sm font-black text-slate-900 dark:text-white leading-tight">
+                    Guardianes de la Sala
+                  </h4>
+                  <p className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 mt-0.5">
+                    6 Territorios • Con Byte el Guardián
+                  </p>
+                </div>
+              </button>
             </div>
           </div>
 

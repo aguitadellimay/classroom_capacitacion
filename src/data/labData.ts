@@ -1,0 +1,1616 @@
+import type {
+  LabWorldConfig,
+  LabBadge,
+  LabChallengeQuestion,
+  LabTreasureChestConfig,
+  LabMapSecretConfig,
+} from '../types/lab';
+import { LAB_MICROSCENES } from './labMicroscenes';
+
+export const LAB_BADGES: LabBadge[] = [
+  {
+    id: 'lab_badge_1',
+    worldId: 1,
+    title: 'Explorador de Equipos',
+    description: 'Trata con suavidad el teclado, mouse, monitor y protege los equipos de bebidas y comida.',
+    icon: '🌳',
+  },
+  {
+    id: 'lab_badge_2',
+    worldId: 2,
+    title: 'Guardián del Orden',
+    description: 'Mantiene la sala limpia, camina sin correr y deja su puesto con la silla ordenada.',
+    icon: '🪑',
+  },
+  {
+    id: 'lab_badge_3',
+    worldId: 3,
+    title: 'Protector Digital',
+    description: 'Enciende y apaga por el Menú Inicio, respeta archivos ajenos y no instala nada sin permiso.',
+    icon: '🖥️',
+  },
+  {
+    id: 'lab_badge_4',
+    worldId: 4,
+    title: 'Guardián de la Seguridad',
+    description: 'Cuida las conexiones sin tocar enchufes, zapatillas ni tirar de los cables eléctricos.',
+    icon: '🔌',
+  },
+  {
+    id: 'lab_badge_5',
+    worldId: 5,
+    title: 'Guardián del Equipo',
+    description: 'Por demostrar respeto, compañerismo y responsabilidad al trabajar con otros en la sala de informática.',
+    icon: '🤝',
+  },
+  {
+    id: 'lab_badge_6',
+    worldId: 6,
+    title: 'Explorador Responsable',
+    description: 'Navega en páginas indicadas, cuida contraseñas y se comunica con respeto en Internet.',
+    icon: '🌐',
+  },
+  {
+    id: 'lab_badge_7',
+    worldId: 7,
+    title: 'GUARDIÁN DE LA SALA DE INFORMÁTICA',
+    description: '¡Superó el Gran Desafío Final demostrando maestría en el cuidado responsable de la sala!',
+    icon: '🏆',
+  },
+];
+
+export const LAB_WORLDS_CONFIG: LabWorldConfig[] = [
+  // -------------------------------------------------------------
+  // MUNDO 1: EL BOSQUE DE LOS EQUIPOS
+  // -------------------------------------------------------------
+  {
+    id: 1,
+    name: 'El Bosque de los Equipos',
+    shortName: 'Los Equipos',
+    subtitle: 'Cuidado físico de computadoras y equipos',
+    themeDescription: 'Aprendé a tratar con delicadeza el teclado, mouse, monitor y todos los componentes de la sala.',
+    icon: '🌳',
+    ambientSoundTheme: 'forest',
+    color: {
+      bg: 'bg-emerald-500',
+      border: 'border-emerald-500',
+      text: 'text-emerald-700 dark:text-emerald-300',
+      cardBg: 'bg-emerald-50 dark:bg-emerald-950/40',
+      badgeBg: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-200',
+      gradient: 'from-emerald-500 via-teal-500 to-green-600',
+    },
+    badge: LAB_BADGES[0],
+    byteIntro: {
+      mood: 'saludo',
+      speech: '¡Hola! Soy Byte. Bienvenido al Bosque de los Equipos. Acá aprenderemos que las computadoras se tocan con suavidad y cariño.',
+      accessory: 'mochila de explorador',
+    },
+    rules: [
+      {
+        id: 'r1_1',
+        title: 'Tratar las computadoras con suavidad',
+        description: 'Las computadoras tienen piezas electrónicas muy delicadas por dentro. No las sacudas ni las golpees.',
+        icon: '💻',
+        goodPractice: 'Presionar las teclas con suavidad y apoyar el mouse sobre el pad con calma.',
+        badPractice: 'Apretar las teclas con bronca o golpear el mouse contra la mesa.',
+        scene: {
+          formulaBefore: '⌨️ FUERZA BRUTA O GOLPES',
+          symbol: '❌',
+          formulaAfter: '🖱️ TECLAS CON SUAVIDAD',
+          headline: 'Las teclas y el mouse se tocan con suavidad, sin golpes ni apuros.',
+        },
+        microscene: LAB_MICROSCENES.ms_1_2,
+      },
+      {
+        id: 'r1_2',
+        title: 'Cero comida y bebidas cerca de las máquinas',
+        description: 'Una gota de agua o migas de galletitas pueden meterse en los circuitos y romper la computadora para siempre.',
+        icon: '🚫🥤',
+        goodPractice: 'Dejar la botella de agua y los snacks adentro de la mochila antes de entrar a la sala.',
+        badPractice: 'Tomar jugo o comer alfajores al lado del teclado mientras usamos la máquina.',
+        scene: {
+          formulaBefore: '🥤 BEBIDAS O ALIMENTOS',
+          symbol: '🚫',
+          formulaAfter: '💻 COMPUTADORA PROTEGIDA',
+          headline: 'Las bebidas deben mantenerse alejadas de las computadoras.',
+        },
+        microscene: LAB_MICROSCENES.ms_1_1,
+      },
+      {
+        id: 'r1_3',
+        title: 'Cuidar las pantallas de los monitores',
+        description: 'Los monitores son de cristal líquido y se rayan fácilmente. Nunca los toques con lápices ni dedos con grasa.',
+        icon: '🖥️',
+        goodPractice: 'Señalar lo que querés mostrar en la pantalla con el dedo en el aire, sin tocar el vidrio.',
+        badPractice: 'Marcar la pantalla con la punta de una birome o apoyar objetos pesados sobre ella.',
+        scene: {
+          formulaBefore: '✏️ BIROME EN PANTALLA',
+          symbol: '❌',
+          formulaAfter: '👉 SEÑALAR EN EL AIRE',
+          headline: 'Las pantallas son delicadas: señalamos en el aire a unos centímetros de distancia.',
+        },
+        microscene: LAB_MICROSCENES.ms_1_3,
+      },
+      {
+        id: 'r1_4',
+        title: 'No mover los equipos sin autorización',
+        description: 'Las CPUs, pantallas e impresoras están conectadas firmemente. Moverlas puede desconectar o romper las fichas.',
+        icon: '✋',
+        goodPractice: 'Si necesitás acomodar tu lugar o mover algo, pedile ayuda al docente.',
+        badPractice: 'Girar la pantalla bruscamente o arrastrar la CPU con fuerza.',
+        scene: {
+          formulaBefore: '🖐️ TIRONES Y TRASLADOS',
+          symbol: '❌',
+          formulaAfter: '🙋 PEDIR AYUDA AL PROFE',
+          headline: 'No movemos las máquinas ni jalamos de las pantallas sin permiso docente.',
+        },
+        microscene: LAB_MICROSCENES.ms_1_4,
+      },
+    ],
+    challenges: [
+      {
+        id: 'c1_1',
+        question: '¿Qué debemos hacer si necesitamos mover una computadora o acomodar el monitor en la mesa?',
+        situation: 'Querés acomodar la pantalla porque te da el reflejo de la luz de la ventana.',
+        hint: 'Pista: pensá quién es la persona en la sala que sabe acomodar los equipos con seguridad.',
+        options: [
+          {
+            id: 'a',
+            text: 'Moverla con fuerza y rapidez nosotros mismos.',
+            isCorrect: false,
+            explanation: 'Mover los equipos bruscamente puede tirar de los cables o hacer que la pantalla se caiga.',
+          },
+          {
+            id: 'b',
+            text: 'Pedir ayuda y autorización al docente a cargo.',
+            isCorrect: true,
+            explanation: '¡Exacto! El docente te indicará cómo acomodarla con seguridad sin dañar las conexiones.',
+          },
+          {
+            id: 'c',
+            text: 'Tironear de los cables para arrastrarla más cerca.',
+            isCorrect: false,
+            explanation: '¡Peligroso! Tirar de los cables puede dañar las fichas internas o provocar un cortocircuito.',
+          },
+          {
+            id: 'd',
+            text: 'Desconectarla y cambiarla de mesa sin avisar.',
+            isCorrect: false,
+            explanation: 'Cada equipo tiene su puesto asignado; no debemos desconectarlo por cuenta propia.',
+          },
+        ],
+      },
+      {
+        id: 'c1_2',
+        question: 'Trajiste tu botella de agua a la sala de informática. ¿Dónde debemos colocarla?',
+        situation: 'Hace calor y tenés una botellita de agua para tomar.',
+        hint: 'Pista: buscá el lugar donde el agua no pueda salpicar ni caerse por accidente sobre la máquina.',
+        options: [
+          {
+            id: 'a',
+            text: 'Apoyada sobre la CPU para tenerla a mano.',
+            isCorrect: false,
+            explanation: '¡Peligro! Si se vuelca sobre la CPU, el agua entra directo a los componentes electrónicos.',
+          },
+          {
+            id: 'b',
+            text: 'Al lado del teclado y del mousepad.',
+            isCorrect: false,
+            explanation: 'Un movimiento del codo sin querer puede voltear la botella sobre el teclado.',
+          },
+          {
+            id: 'c',
+            text: 'Adentro de la mochila o en la mesa del docente, lejos de los equipos.',
+            isCorrect: true,
+            explanation: '¡Excelente! Mantener los líquidos lejos de las computadoras previene accidentes graves.',
+          },
+          {
+            id: 'd',
+            text: 'Encima de la pantalla del monitor.',
+            isCorrect: false,
+            explanation: 'Nunca debemos apoyar objetos sobre los monitores; es inestable y peligroso.',
+          },
+        ],
+      },
+      {
+        id: 'c1_3',
+        question: 'Un compañero quiere mostrarte un detalle en su pantalla y saca una birome filosa. ¿Qué le decís?',
+        situation: 'Tu compañero quiere apoyar la punta de la lapicera sobre la pantalla para marcar una palabra.',
+        hint: 'Pista: para mostrar algo en la pantalla no hace falta tocarla con nada con punta.',
+        options: [
+          {
+            id: 'a',
+            text: 'Que marque con fuerza para que se vea mejor.',
+            isCorrect: false,
+            explanation: 'La punta de la birome raya el panel y puede quemar los píxeles de la pantalla.',
+          },
+          {
+            id: 'b',
+            text: 'Que señale en el aire con su dedo, sin apoyar ningún objeto sobre la pantalla.',
+            isCorrect: true,
+            explanation: '¡Muy bien! Señalar a unos centímetros de distancia protege la pantalla de marcas y roturas.',
+          },
+          {
+            id: 'c',
+            text: 'Que use una tijera en lugar de la lapicera.',
+            isCorrect: false,
+            explanation: 'Los objetos metálicos o con filo nunca deben acercarse a las pantallas.',
+          },
+        ],
+      },
+      {
+        id: 'c1_4',
+        question: 'Estás escribiendo una consigna y notas que la tecla "Espacio" no responde bien. ¿Cómo actuás?',
+        situation: 'Apretás la barra espaciadora pero el cursor no se mueve.',
+        hint: 'Pista: si una tecla no responde, la solución nunca es la fuerza bruta.',
+        options: [
+          {
+            id: 'a',
+            text: 'Golpearla con el puño para que destrabe.',
+            isCorrect: false,
+            explanation: 'Golpear el teclado rompe los resortes y contactos debajo de las teclas.',
+          },
+          {
+            id: 'b',
+            text: 'Levantar la mano y avisarle con calma al docente para que lo revise.',
+            isCorrect: true,
+            explanation: '¡Brillante! El docente verificará si está trabada o necesita limpieza con aire comprimido.',
+          },
+          {
+            id: 'c',
+            text: 'Arrancar la tecla con una regla.',
+            isCorrect: false,
+            explanation: 'Intentar desarmar piezas del teclado sin herramientas adecuadas rompe las trabas plásticas.',
+          },
+        ],
+      },
+    ],
+  },
+
+  // -------------------------------------------------------------
+  // MUNDO 2: EL REINO DEL ORDEN
+  // -------------------------------------------------------------
+  {
+    id: 2,
+    name: 'El Reino del Orden',
+    shortName: 'El Orden',
+    subtitle: 'Orden, limpieza y comportamiento seguro',
+    themeDescription: 'Mantené la sala limpia, camina sin correr y deja tu puesto con la silla ordenada.',
+    icon: '🪑',
+    ambientSoundTheme: 'care',
+    color: {
+      bg: 'bg-amber-500',
+      border: 'border-amber-500',
+      text: 'text-amber-700 dark:text-amber-300',
+      cardBg: 'bg-amber-50 dark:bg-amber-950/40',
+      badgeBg: 'bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-200',
+      gradient: 'from-amber-500 via-orange-500 to-yellow-600',
+    },
+    badge: LAB_BADGES[1],
+    byteIntro: {
+      mood: 'saludo',
+      speech: '¡Bienvenidos al Reino del Orden! En la sala nos movemos con calma, cuidamos el espacio común y dejamos todo impecable.',
+      accessory: 'insignia de guardián',
+    },
+    rules: [
+      {
+        id: 'r2_1',
+        title: 'Caminar con tranquilidad por los pasillos',
+        description: 'La sala tiene cables canalizados, bancos y equipos delicados. Correr puede provocar tropiezos o caídas de máquinas.',
+        icon: '🚶',
+        goodPractice: 'Caminar a paso tranquilo mirando siempre hacia adelante.',
+        badPractice: 'Correr carreras entre las filas de bancos o empujar a compañeros.',
+        scene: {
+          formulaBefore: '🏃 CORRER O EMPUJAR',
+          symbol: '❌',
+          formulaAfter: '🚶 PASO SERENO Y ATENTO',
+          headline: 'Caminamos con calma para evitar tropezar con bancos o cables.',
+        },
+        microscene: LAB_MICROSCENES.ms_2_1,
+      },
+      {
+        id: 'r2_2',
+        title: 'Acomodar la silla antes de retirarse',
+        description: 'Una silla salida en el pasillo bloquea el paso y puede hacer tropezar a los chicos del turno siguiente.',
+        icon: '🪑',
+        goodPractice: 'Empujar suavemente la silla debajo de la mesa antes de salir.',
+        badPractice: 'Dejar la silla torcida en medio del camino con la mochila tirada.',
+        scene: {
+          formulaBefore: '🪑 SILLA ATRAVESADA',
+          symbol: '❌',
+          formulaAfter: '🪑 SILLA BIEN ARRUMADA',
+          headline: 'Al terminar la clase, dejamos la silla acomodada y el pasillo libre.',
+        },
+        microscene: LAB_MICROSCENES.ms_2_4,
+      },
+      {
+        id: 'r2_3',
+        title: 'Manos limpias para usar los equipos',
+        description: 'La grasa y suciedad de las manos se pegan a las teclas y al mouse, afectando la higiene de todos los que usan la sala.',
+        icon: '🧼',
+        goodPractice: 'Lavarse las manos después del recreo antes de ingresar a informática.',
+        badPractice: 'Venir del patio con barro o alfajor en los dedos y tocar el teclado.',
+        scene: {
+          formulaBefore: '🍫 MANOS CON GRASA/TIERRA',
+          symbol: '❌',
+          formulaAfter: '🧼 MANOS LIMPIAS Y SECAS',
+          headline: 'Las manos limpias mantienen las teclas y el mouse impecables para todos.',
+        },
+        microscene: LAB_MICROSCENES.ms_2_3,
+      },
+      {
+        id: 'r2_4',
+        title: 'Cuidar el silencio de trabajo y escuchar al docente',
+        description: 'Cuando el profesor explica una consigna, dejamos de escribir y prestamos atención para no cometer errores.',
+        icon: '👂',
+        goodPractice: 'Soltar el mouse y mirar al profesor cuando pide la atención de todos.',
+        badPractice: 'Seguir jugando o chateando mientras el docente está explicando la tarea.',
+        scene: {
+          formulaBefore: '📢 GRITOS O DISTRACCIONES',
+          symbol: '❌',
+          formulaAfter: '👂 ATENCIÓN AL PROFESOR',
+          headline: 'Cuando el docente habla, soltamos el mouse y escuchamos con atención.',
+        },
+        microscene: LAB_MICROSCENES.ms_2_2,
+      },
+    ],
+    challenges: [
+      {
+        id: 'c2_1',
+        question: 'Tocó el timbre del recreo y terminaste tu actividad. ¿Qué debés hacer con tu lugar de trabajo?',
+        situation: 'Querés salir a jugar al patio con tus amigos.',
+        hint: 'Pista: pensá cómo le gustaría encontrar el banco a otro compañero que entre después.',
+        options: [
+          {
+            id: 'a',
+            text: 'Salir corriendo de inmediato dejando la silla en medio del pasillo.',
+            isCorrect: false,
+            explanation: 'Una silla en el camino puede hacer tropezar a otros compañeros que van saliendo.',
+          },
+          {
+            id: 'b',
+            text: 'Guardar tus útiles, acomodar el teclado, arrimar la silla a la mesa y salir caminando tranquilo.',
+            isCorrect: true,
+            explanation: '¡Excelente! Dejás el espacio despejado, seguro y listo para la siguiente clase.',
+          },
+          {
+            id: 'c',
+            text: 'Tirar la mochila al piso y dejar la pantalla prendida en cualquier página.',
+            isCorrect: false,
+            explanation: 'El orden y el cuidado de las sesiones es responsabilidad de cada alumno.',
+          },
+        ],
+      },
+      {
+        id: 'c2_2',
+        question: 'Venís del recreo después de jugar en el patio con tierra. ¿Qué hacés antes de entrar a la sala?',
+        situation: 'Tenés las manos llenas de polvo y tierra del recreo.',
+        hint: 'Pista: el teclado y el mouse son compartidos por muchos chicos durante la semana.',
+        options: [
+          {
+            id: 'a',
+            text: 'Pasar por el baño a lavarte las manos con agua y jabón, y secártelas bien.',
+            isCorrect: true,
+            explanation: '¡Muy bien! Las manos limpias garantizan higiene y cuidan los sensores del mouse y las teclas.',
+          },
+          {
+            id: 'b',
+            text: 'Limpiarte en el uniforme y empezar a teclear rápido.',
+            isCorrect: false,
+            explanation: 'La tierra en el teclado se mete entre los contactos y termina trabando las teclas.',
+          },
+          {
+            id: 'c',
+            text: 'Soplar fuerte el teclado para sacarle el polvo de tus manos.',
+            isCorrect: false,
+            explanation: 'Soplar no limpia las manos y puede arrojar saliva a los circuitos electrónicos.',
+          },
+        ],
+      },
+      {
+        id: 'c2_3',
+        question: 'El profesor dice: "¡Atención sala, todos mirando al pizarrón para la nueva consigna!". ¿Cuál es la actitud correcta?',
+        situation: 'Estás justo en medio de una búsqueda de fotos en la computadora.',
+        hint: 'Pista: respetar las indicaciones del maestro te ayuda a no perderte ningún paso.',
+        options: [
+          {
+            id: 'a',
+            text: 'Seguir mirando la pantalla y scrolleando fotos mientras el profe habla.',
+            isCorrect: false,
+            explanation: 'Si no escuchás la explicación, después no vas a saber cómo realizar la consigna.',
+          },
+          {
+            id: 'b',
+            text: 'Soltar el mouse, girar el cuerpo hacia el profesor y escuchar con respeto.',
+            isCorrect: true,
+            explanation: '¡Perfecto! Demuestra respeto hacia el docente y te permite aprender el paso a paso.',
+          },
+          {
+            id: 'c',
+            text: 'Ponerte a hablar con el compañero de al lado.',
+            isCorrect: false,
+            explanation: 'Hablar interrumpe la explicación para los demás compañeros que quieren escuchar.',
+          },
+        ],
+      },
+      {
+        id: 'c2_4',
+        question: 'Un compañero se apura y sale corriendo por el pasillo entre las computadoras. ¿Por qué esto es peligroso?',
+        situation: 'El pasillo tiene bancos, cables protegidos y mochilas guardadas.',
+        hint: 'Pista: pensá qué cosas podrían romperse o qué daño físico podría sufrir alguien.',
+        options: [
+          {
+            id: 'a',
+            text: 'Porque puede tropezar, golpearse o arrastrar una computadora y tirarla al piso.',
+            isCorrect: true,
+            explanation: '¡Exactamente! Correr en un espacio tecnológico puede provocar lesiones y roturas costosas.',
+          },
+          {
+            id: 'b',
+            text: 'Porque el piso se gasta más rápido si alguien corre.',
+            isCorrect: false,
+            explanation: 'El peligro real son las caídas, golpes y la rotura de equipos.',
+          },
+          {
+            id: 'c',
+            text: 'Porque las computadoras se apagan solas si detectan movimiento.',
+            isCorrect: false,
+            explanation: 'Las máquinas no se apagan por movimiento, pero corren riesgo de caerse.',
+          },
+        ],
+      },
+    ],
+  },
+
+  // -------------------------------------------------------------
+  // MUNDO 3: LA FORTALEZA DIGITAL
+  // -------------------------------------------------------------
+  {
+    id: 3,
+    name: 'La Fortaleza Digital',
+    shortName: 'Fortaleza',
+    subtitle: 'Uso correcto y cuidado de los sistemas',
+    themeDescription: 'Encendido y apagado correcto, respeto por archivos ajenos y uso del software escolar.',
+    icon: '🖥️',
+    ambientSoundTheme: 'fortress',
+    color: {
+      bg: 'bg-sky-500',
+      border: 'border-sky-500',
+      text: 'text-sky-700 dark:text-sky-300',
+      cardBg: 'bg-sky-50 dark:bg-sky-950/40',
+      badgeBg: 'bg-sky-100 text-sky-800 dark:bg-sky-900/60 dark:text-sky-200',
+      gradient: 'from-sky-500 via-blue-600 to-indigo-600',
+    },
+    badge: LAB_BADGES[2],
+    byteIntro: {
+      mood: 'pensamiento',
+      speech: '¡Llegamos a la Fortaleza Digital! Acá aprenderemos a encender y apagar correctamente, y a cuidar los archivos de todos.',
+      accessory: 'escudo digital',
+    },
+    rules: [
+      {
+        id: 'r3_1',
+        title: 'Encendido y apagado correcto del sistema',
+        description: 'Las computadoras tienen un sistema operativo que guarda datos antes de apagarse. Nunca las desconectes de la pared.',
+        icon: '🔘',
+        goodPractice: 'Hacer clic en Menú Inicio > Apagar y esperar a que la pantalla se apague sola.',
+        badPractice: 'Apretar el botón de la zapatilla eléctrica o desenchufar directamente el cable.',
+        scene: {
+          formulaBefore: '🔌 DESCONECTAR DE LA PARED',
+          symbol: '❌',
+          formulaAfter: '🖱️ INICIO > APAGAR',
+          headline: 'El sistema operativo necesita cerrar sus programas antes de apagarse.',
+        },
+        microscene: LAB_MICROSCENES.ms_3_1,
+      },
+      {
+        id: 'r3_2',
+        title: 'No instalar programas ni juegos sin autorización',
+        description: 'Descargar archivos desconocidos puede traer virus que rompen las máquinas de la escuela o borran los datos.',
+        icon: '🛡️',
+        goodPractice: 'Utilizar únicamente las aplicaciones y páginas web que el profesor indique.',
+        badPractice: 'Descargar juegos o programas piratas de páginas raras.',
+        scene: {
+          formulaBefore: '📥 DESCARGAR JUEGOS PIRATAS',
+          symbol: '🚫',
+          formulaAfter: '🛡️ PROGRAMAS ESCOLARES',
+          headline: 'Solo usamos las aplicaciones y herramientas autorizadas por el docente.',
+        },
+        microscene: LAB_MICROSCENES.ms_3_2,
+      },
+      {
+        id: 'r3_3',
+        title: 'Respetar los archivos y carpetas de los demás',
+        description: 'La computadora de la sala la comparten muchos grados. Nunca modifiques ni borres archivos que no sean tuyos.',
+        icon: '📁',
+        goodPractice: 'Trabajar únicamente en tu carpeta o en tu usuario de Classroom.',
+        badPractice: 'Abrir los trabajos de otros chicos, cambiarles el texto o mandarlos a la papelera.',
+        scene: {
+          formulaBefore: '🗑️ BORRAR ARCHIVOS AJENOS',
+          symbol: '🚫',
+          formulaAfter: '📁 RESPETAR CARPETAS',
+          headline: 'Cada alumno trabaja en su proyecto y cuida los archivos de sus compañeros.',
+        },
+        microscene: LAB_MICROSCENES.ms_3_3,
+      },
+      {
+        id: 'r3_4',
+        title: 'Avisar al docente ante cualquier mensaje de error',
+        description: 'Si aparece una ventana extraña, un cartel en rojo o la máquina se congela, pedile ayuda al docente.',
+        icon: '⚠️',
+        goodPractice: 'Levantar la mano y mostrarle la pantalla al profesor.',
+        badPractice: 'Hacer clic desesperadamente en cualquier botón para que desaparezca.',
+        scene: {
+          formulaBefore: '🖱️ CLICS DESESPERADOS',
+          symbol: '❌',
+          formulaAfter: '🙋 AVISAR AL DOCENTE',
+          headline: 'Ante una ventana extraña o error, el profe sabe cómo solucionarlo.',
+        },
+        microscene: LAB_MICROSCENES.ms_3_4,
+      },
+    ],
+    challenges: [
+      {
+        id: 'c3_1',
+        question: 'Terminó la última hora de clase y el docente indica que debemos apagar las computadoras. ¿Cómo lo hacés?',
+        situation: 'El sistema operativo está en el escritorio de Windows.',
+        hint: 'Pista: recordá qué botón del sistema operativo se usa para cerrar los programas ordenadamente.',
+        options: [
+          {
+            id: 'a',
+            text: 'Ir a Menú Inicio > Apagar y esperar a que la computadora se apague por completo.',
+            isCorrect: true,
+            explanation: '¡Excelente! Esto permite que el disco rígido y los archivos se guarden sin romperse.',
+          },
+          {
+            id: 'b',
+            text: 'Apretar el botón rojo de la zapatilla de enchufes para apagar todas las máquinas juntas.',
+            isCorrect: false,
+            explanation: 'Cortar la energía de golpe corrompe el sistema operativo.',
+          },
+          {
+            id: 'c',
+            text: 'Dejar el monitor encendido y desenchufar el teclado.',
+            isCorrect: false,
+            explanation: 'Desenchufar el teclado no apaga la computadora.',
+          },
+        ],
+      },
+      {
+        id: 'c3_2',
+        question: 'Entrás al explorador de archivos y ves una carpeta llamada "Trabajo Práctico 4to Grado B". ¿Qué hacés?',
+        situation: 'Vos sos de 3er grado y esa carpeta no te pertenece.',
+        hint: 'Pista: los archivos de tus compañeros son como sus cuadernos de clase.',
+        options: [
+          {
+            id: 'a',
+            text: 'Entrar a ver qué hicieron y borrar algunos párrafos como broma.',
+            isCorrect: false,
+            explanation: 'Borrar o modificar trabajos de otros alumnos es una falta de respeto muy grave.',
+          },
+          {
+            id: 'b',
+            text: 'No tocarla y buscar únicamente tu propia carpeta o archivo asignado.',
+            isCorrect: true,
+            explanation: '¡Brillante! El respeto por los documentos ajenos es un principio fundamental.',
+          },
+          {
+            id: 'c',
+            text: 'Mover la carpeta a la papelera de reciclaje.',
+            isCorrect: false,
+            explanation: 'Podrías hacer que otros chicos pierdan semanas de esfuerzo.',
+          },
+        ],
+      },
+      {
+        id: 'c3_3',
+        question: 'Estás navegando y salta un cartel que dice: "¡FELICITACIONES! Hacé clic acá para descargar un juego gratis". ¿Qué hacés?',
+        situation: 'Apareció una ventana emergente desconocida en la pantalla.',
+        hint: 'Pista: desconfiá de las páginas que prometen premios o descargas sospechosas.',
+        options: [
+          {
+            id: 'a',
+            text: 'Hacer clic de inmediato para tener el juego.',
+            isCorrect: false,
+            explanation: 'Esos carteles suelen instalar virus o programas espía dañinos.',
+          },
+          {
+            id: 'b',
+            text: 'No hacer clic y avisarle al docente para que cierre esa ventana con seguridad.',
+            isCorrect: true,
+            explanation: '¡Muy bien! Ante la duda sobre anuncios sospechosos, el docente sabrá cómo cerrarlo.',
+          },
+          {
+            id: 'c',
+            text: 'Descargar el archivo y pasarlo por pendrive a todas las máquinas.',
+            isCorrect: false,
+            explanation: 'Eso podría infectar la red entera de la escuela.',
+          },
+        ],
+      },
+      {
+        id: 'c3_4',
+        question: 'La computadora se tildó y la flecha del mouse no se mueve. ¿Cuál es el paso correcto?',
+        situation: 'La pantalla quedó congelada con un programa abierto.',
+        hint: 'Pista: no intentes arreglarlo golpeando la máquina.',
+        options: [
+          {
+            id: 'a',
+            text: 'Levantar la mano y avisarle con tranquilidad al docente.',
+            isCorrect: true,
+            explanation: '¡Exacto! El profesor sabe cómo cerrar el proceso trabado con el Administrador de Tareas.',
+          },
+          {
+            id: 'b',
+            text: 'Pegarle una patada a la CPU para que reaccione.',
+            isCorrect: false,
+            explanation: 'Los golpes a la CPU pueden rayar los discos duros y romper la memoria.',
+          },
+          {
+            id: 'c',
+            text: 'Tironear del cable del mouse hasta que se desenchufe.',
+            isCorrect: false,
+            explanation: 'Desconectar periféricos a la fuerza puede romper los puertos USB.',
+          },
+        ],
+      },
+    ],
+  },
+
+  // -------------------------------------------------------------
+  // MUNDO 4: EL VALLE DE LA SEGURIDAD
+  // -------------------------------------------------------------
+  {
+    id: 4,
+    name: 'El Valle de la Seguridad',
+    shortName: 'La Seguridad',
+    subtitle: 'Cables, conexiones y prevención eléctrica',
+    themeDescription: 'Seguridad con la electricidad sin miedo: cuidamos las conexiones y avisamos ante cualquier peligro.',
+    icon: '🔌',
+    ambientSoundTheme: 'cables',
+    color: {
+      bg: 'bg-violet-600',
+      border: 'border-violet-600',
+      text: 'text-violet-700 dark:text-violet-300',
+      cardBg: 'bg-violet-50 dark:bg-violet-950/40',
+      badgeBg: 'bg-violet-100 text-violet-800 dark:bg-violet-900/60 dark:text-violet-200',
+      gradient: 'from-violet-600 via-purple-600 to-indigo-600',
+    },
+    badge: LAB_BADGES[3],
+    byteIntro: {
+      mood: 'idle',
+      speech: '¡Atención exploradores! En el Valle de la Seguridad cuidamos los cables y enchufes sin miedo, pero con mucha prudencia.',
+      accessory: 'casco de seguridad',
+    },
+    rules: [
+      {
+        id: 'r4_1',
+        title: 'No tocar cables ni enchufes en las paredes o zapatillas',
+        description: 'La corriente eléctrica hace funcionar las máquinas pero puede ser muy peligrosa para las personas si se manipulan los enchufes.',
+        icon: '⚡',
+        goodPractice: 'Dejar que el docente o los adultos conecten y desconecten los equipos.',
+        badPractice: 'Meter los dedos en las zapatillas de enchufes o jugar a desenchufar cables.',
+        scene: {
+          formulaBefore: '⚡ TOCAR ENCHUFES O CABLES',
+          symbol: '🚫',
+          formulaAfter: '🙋 DOCENTE A CARGO',
+          headline: 'Solo los adultos conectan y manipulan los enchufes de la sala.',
+        },
+        microscene: LAB_MICROSCENES.ms_4_2,
+      },
+      {
+        id: 'r4_2',
+        title: 'No tirar de los cables para desenchufar',
+        description: 'Si alguna vez un adulto te pide desconectar algo, se toma con firmeza desde la ficha plástica, nunca del cable.',
+        icon: '🔌',
+        goodPractice: 'Sujetar la ficha plástica con suavidad y firmeza.',
+        badPractice: 'Tironear del cable desde lejos; se corta por dentro y puede dar chispazos.',
+        scene: {
+          formulaBefore: '🖐️ TIRONES DE CABLES',
+          symbol: '❌',
+          formulaAfter: '🔌 TOMAR DE LA FICHA PLÁSTICA',
+          headline: 'Nunca se tira de los cables: se toman de la ficha plástica con permiso.',
+        },
+        microscene: LAB_MICROSCENES.ms_4_1,
+      },
+      {
+        id: 'r4_3',
+        title: 'Avisar al docente si ves cables pelados o chispas',
+        description: 'Si notas un cable pelado, olor a quemado o ves chispas, no te asustes: avisale de inmediato al profesor.',
+        icon: '🚨',
+        goodPractice: 'Alejarse del lugar y decirle al docente enseguida lo que viste.',
+        badPractice: 'Tocar el cable roto con el dedo para ver si tiene electricidad.',
+        scene: {
+          formulaBefore: '⚠️ CABLE DAÑADO O CHISPAS',
+          symbol: '🚨',
+          formulaAfter: '📢 AVISAR AL PROFESOR',
+          headline: 'Ante un cable dañado o chispas, nos alejamos y avisamos al docente.',
+        },
+        microscene: LAB_MICROSCENES.ms_4_3,
+      },
+      {
+        id: 'r4_4',
+        title: 'Mantener los pies lejos de las zapatillas de piso',
+        description: 'En algunas salas hay canaletas o zapatillas cerca del suelo. No apoyes los pies ni patees los cables.',
+        icon: '👟',
+        goodPractice: 'Apoyar los pies en el piso del banco lejos de los cables.',
+        badPractice: 'Pisar los cables con fuerza o jugar a hamacarse sobre las conexiones.',
+        scene: {
+          formulaBefore: '👟 PISAR O PATEAR CABLES',
+          symbol: '❌',
+          formulaAfter: '👣 PIES EN EL PISO LIBRE',
+          headline: 'Cuidamos las conexiones del piso sin apoyar los pies sobre los cables.',
+        },
+        microscene: LAB_MICROSCENES.ms_4_4,
+      },
+    ],
+    challenges: [
+      {
+        id: 'c4_1',
+        question: 'Ves que un cable detrás de tu computadora está en el piso y querés arrimar la silla. ¿Qué debés hacer?',
+        situation: 'El cable está cerca de las ruedas de la silla.',
+        hint: 'Pista: aplastar o apretar cables con las ruedas de la silla puede cortarlos por dentro.',
+        options: [
+          {
+            id: 'a',
+            text: 'Pasarle la rueda por encima con fuerza total.',
+            isCorrect: false,
+            explanation: 'Las ruedas de las sillas pueden cortar el aislante del cable y provocar un cortocircuito.',
+          },
+          {
+            id: 'b',
+            text: 'Fijarte con cuidado y arrimar la silla sin pisar ni apretar el cable.',
+            isCorrect: true,
+            explanation: '¡Excelente! Cuidar que los cables no queden aplastados protege la instalación.',
+          },
+          {
+            id: 'c',
+            text: 'Desconectar el cable con una patada.',
+            isCorrect: false,
+            explanation: 'Patear los cables es peligroso y rompe las fichas de conexión.',
+          },
+        ],
+      },
+      {
+        id: 'c4_2',
+        question: 'Una zapatilla de enchufes hace un pequeño ruido a "chispa" y sale un leve olor a plástico caliente. ¿Cómo actuás?',
+        situation: 'Notaste una anomalía eléctrica en la sala.',
+        hint: 'Pista: ante el fuego o chispas, la mejor reacción es alejarse y avisar a los adultos.',
+        options: [
+          {
+            id: 'a',
+            text: 'Tirarle un vaso de agua encima.',
+            isCorrect: false,
+            explanation: '¡PELIGRO EXTREMO! El agua conduce la electricidad y provoca electrocución.',
+          },
+          {
+            id: 'b',
+            text: 'Alejarte del lugar con calma y avisarle de inmediato al docente a cargo.',
+            isCorrect: true,
+            explanation: '¡Brillante! El docente desconectará la llave térmica general del aula con seguridad.',
+          },
+          {
+            id: 'c',
+            text: 'Intentar apretar el enchufe con la mano para ver qué pasa.',
+            isCorrect: false,
+            explanation: 'Nunca toques conexiones calientes o que hagan chispas.',
+          },
+        ],
+      },
+      {
+        id: 'c4_3',
+        question: '¿Quién debe conectar y desconectar los enchufes de 220V en la sala de informática?',
+        situation: 'La computadora no enciende porque la zapatilla está desconectada.',
+        hint: 'Pista: la electricidad de pared requiere manipulación por personas adultas capacitadas.',
+        options: [
+          {
+            id: 'a',
+            text: 'Cualquier alumno usando una tijera escolar.',
+            isCorrect: false,
+            explanation: 'El metal conduce la electricidad; jamás toques un enchufe con tijeras u objetos de metal.',
+          },
+          {
+            id: 'b',
+            text: 'El docente, los directivos o el personal técnico de la escuela.',
+            isCorrect: true,
+            explanation: '¡Exacto! Los adultos capacitados son los únicos autorizados a manipular la red eléctrica.',
+          },
+          {
+            id: 'c',
+            text: 'Los alumnos más chicos de primer grado.',
+            isCorrect: false,
+            explanation: 'Los niños no deben manipular tomas de corriente.',
+          },
+        ],
+      },
+      {
+        id: 'c4_4',
+        question: 'Estás sentado y ves que tus pies tocan los cables de la CPU debajo de la mesa. ¿Qué hacés?',
+        situation: 'Tus zapatillas están rozando los cables de conexión.',
+        hint: 'Pista: los pies deben estar apoyados con calma en el suelo despejado.',
+        options: [
+          {
+            id: 'a',
+            text: 'Acomodar tus pies en el piso libre sin pisar ni enredarte con los cables.',
+            isCorrect: true,
+            explanation: '¡Muy bien! Mantener los pies alejados evita que desenchufes la máquina por accidente.',
+          },
+          {
+            id: 'b',
+            text: 'Jugar a patear los cables como si fueran una pelota.',
+            isCorrect: false,
+            explanation: 'Patear los cables desconecta la máquina y puede romper las placas madre.',
+          },
+          {
+            id: 'c',
+            text: 'Hamacarte sobre los cables con todo el peso del cuerpo.',
+            isCorrect: false,
+            explanation: 'Eso puede cortar los conductores de cobre internos.',
+          },
+        ],
+      },
+    ],
+  },
+
+  // -------------------------------------------------------------
+  // MUNDO 5: EL REINO DE LOS COMPAÑEROS
+  // -------------------------------------------------------------
+  {
+    id: 5,
+    name: 'El Reino de los Compañeros',
+    shortName: 'Compañeros',
+    subtitle: 'Respeto, empatía y trabajo en equipo en la sala',
+    themeDescription: 'Cuidar la sala también es cuidar a las personas con quienes aprendemos. Descubrí cómo compartir equipos, turnarse y colaborar con amabilidad.',
+    icon: '🤝',
+    ambientSoundTheme: 'team',
+    color: {
+      bg: 'bg-teal-500',
+      border: 'border-teal-500',
+      text: 'text-teal-700 dark:text-teal-300',
+      cardBg: 'bg-teal-50 dark:bg-teal-950/40',
+      badgeBg: 'bg-teal-100 text-teal-800 dark:bg-teal-900/60 dark:text-teal-200',
+      gradient: 'from-teal-500 via-emerald-600 to-cyan-600',
+    },
+    badge: LAB_BADGES[4],
+    byteIntro: {
+      mood: 'alegria',
+      speech: '¡Bienvenidos al Reino de los Compañeros! Cuidar nuestra sala no es solo cuidar cables y pantallas: ¡es cuidar a las personas! Aprendamos a compartir el mouse, turnarnos y ayudarnos con respeto.',
+      accessory: 'emblema de amistad',
+    },
+    rules: [
+      {
+        id: 'r5_1',
+        title: 'Compartir y turnarse con el mouse y teclado',
+        description: 'Cuando trabajamos en parejas o grupos, nos organizamos: primero uno maneja el teclado y el otro busca la información, y luego intercambiamos roles con amabilidad.',
+        icon: '🖱️',
+        goodPractice: 'Establecer turnos claros y rotar el uso del mouse y teclado para que todos participen.',
+        badPractice: 'Apropiarse de la computadora toda la clase e ignorar al compañero.',
+        scene: {
+          formulaBefore: '🙅 MONOPOLIZAR EL EQUIPO',
+          symbol: '❌',
+          formulaAfter: '🤝 TURNARSE CON AMABILIDAD',
+          headline: 'Compartir y turnarse permite que todos aprendan y disfruten la clase.',
+        },
+        microscene: LAB_MICROSCENES.ms_5_1,
+      },
+      {
+        id: 'r5_2',
+        title: 'Explicar con paciencia, nunca arrebatar el mouse',
+        description: 'Si a tu compañero le cuesta encontrar una herramienta o escribir una palabra, guialo con tus palabras o señalá con el dedo en el aire. ¡Nunca le saques el mouse de la mano!',
+        icon: '🗣️',
+        goodPractice: 'Explicar paso a paso y con paciencia para que tu compañero descubra la solución.',
+        badPractice: 'Arrebatar el mouse o teclado de un tirón para hacer el clic uno mismo.',
+        scene: {
+          formulaBefore: '🖐️ ARREBATAR EL MOUSE',
+          symbol: '🚫',
+          formulaAfter: '💡 EXPLICAR CON PALABRAS',
+          headline: 'Enseñar con paciencia ayuda a aprender el doble; nunca quitamos las herramientas de la mano.',
+        },
+        microscene: LAB_MICROSCENES.ms_5_2,
+      },
+      {
+        id: 'r5_3',
+        title: 'Pedir las cosas por favor y dar las gracias',
+        description: 'Las palabras mágicas "por favor", "gracias" y "¿me permitís?" crean un clima de armonía donde todos trabajamos con alegría y sin discusiones.',
+        icon: '💬',
+        goodPractice: 'Pedir el turno con educación diciendo: "¿Me dejás escribir el siguiente párrafo, por favor?".',
+        badPractice: 'Exigir a los gritos, burlarse o enojarse cuando el otro está escribiendo.',
+        scene: {
+          formulaBefore: '😠 EXIGIR Y GRITAR',
+          symbol: '❌',
+          formulaAfter: '✨ PEDIR POR FAVOR Y GRACIAS',
+          headline: 'El respeto y la amabilidad son el mejor antivirus contra los conflictos en la sala.',
+        },
+        microscene: LAB_MICROSCENES.ms_5_4,
+      },
+      {
+        id: 'r5_4',
+        title: 'Espacio personal: no empujar ni invadir el banco ajeno',
+        description: 'Cada compañero necesita su espacio para sentarse cómodo y concentrarse. No empujamos las sillas, no apoyamos los codos sobre el compañero ni tiramos cosas.',
+        icon: '🪑',
+        goodPractice: 'Mantener una postura cómoda respetando el espacio del compañero de banco.',
+        badPractice: 'Empujar con el codo, mover la silla del compañero o invadir su espacio de trabajo.',
+        scene: {
+          formulaBefore: '🤼 EMPUJONES Y ROCES',
+          symbol: '🚫',
+          formulaAfter: '📐 ESPACIO PROPIO Y RESPETO',
+          headline: 'Cuidar el espacio personal asegura comodidad y evita accidentes con las máquinas.',
+        },
+        microscene: LAB_MICROSCENES.ms_5_3,
+      },
+    ],
+    challenges: [
+      {
+        id: 'c5_1',
+        question: 'Estás trabajando en pareja y tu compañero tiene el mouse, pero tarda en encontrar la opción para guardar el archivo. ¿Qué debés hacer?',
+        situation: 'Tu compañero está buscando la opción y vos ya sabés dónde está.',
+        hint: 'Pista: pensá cómo te gustaría que te ayuden a vos si estuvieras aprendiendo.',
+        options: [
+          {
+            id: 'a',
+            text: 'Tironearle el mouse de la mano rápidamente y hacer clic vos mismo.',
+            isCorrect: false,
+            explanation: 'Arrebatar las cosas de la mano es una falta de respeto y puede romper el cable del mouse.',
+          },
+          {
+            id: 'b',
+            text: 'Guiarlo amablemente con palabras: "Mirá, arriba a la izquierda hay un disquete azul, hacé clic ahí".',
+            isCorrect: true,
+            explanation: '¡Excelente! Guiar con explicaciones claras ayuda a tu compañero a aprender y fortalece el trabajo en equipo.',
+          },
+          {
+            id: 'c',
+            text: 'Enojarte y quejarte a los gritos con toda la sala.',
+            isCorrect: false,
+            explanation: 'Gritar no ayuda a nadie e interrumpe el trabajo de toda la sala.',
+          },
+        ],
+      },
+      {
+        id: 'c5_2',
+        question: 'Tienen que escribir un texto largo de a dos en una sola computadora. ¿Cuál es la forma más justa y responsable de trabajar?',
+        situation: 'Hay una sola máquina y dos personas en el equipo.',
+        hint: 'Pista: ambos tienen que participar por igual para aprender.',
+        options: [
+          {
+            id: 'a',
+            text: 'Que uno solo escriba todo el tiempo y el otro se quede mirando el techo aburrido.',
+            isCorrect: false,
+            explanation: 'Ambos deben tener la oportunidad de practicar y aprender.',
+          },
+          {
+            id: 'b',
+            text: 'Acordar turnos: por ejemplo, uno escribe un párrafo mientras el otro revisa la ortografía, y luego intercambian roles.',
+            isCorrect: true,
+            explanation: '¡Brillante! Turnarse equitativamente hace que ambos practiquen y el trabajo quede impecable.',
+          },
+          {
+            id: 'c',
+            text: 'Pelearse por quién toca más teclas al mismo tiempo.',
+            isCorrect: false,
+            explanation: 'Presionar teclas al mismo tiempo traba el teclado y no permite escribir bien.',
+          },
+        ],
+      },
+      {
+        id: 'c5_3',
+        question: 'Tu compañero se tropieza sin querer con la pata de tu silla cuando pasaba. ¿Cómo reaccionás?',
+        situation: 'Un roce accidental en el pasillo de la sala.',
+        hint: 'Pista: los accidentes ocurren sin intención; la empatía resuelve los momentos difíciles.',
+        options: [
+          {
+            id: 'a',
+            text: 'Empujarlo con bronca para vengarte.',
+            isCorrect: false,
+            explanation: 'La violencia y los empujones están prohibidos y pueden provocar accidentes con las computadoras.',
+          },
+          {
+            id: 'b',
+            text: 'Mantener la calma, preguntarle si está bien y acomodar la silla más cerca de la mesa para liberar el paso.',
+            isCorrect: true,
+            explanation: '¡Magistral! La empatía y la amabilidad mantienen la armonía y la seguridad en la sala.',
+          },
+          {
+            id: 'c',
+            text: 'Reírte fuerte y señalarlo para que todos lo miren.',
+            isCorrect: false,
+            explanation: 'Burlarse de un tropiezo lastima los sentimientos del compañero.',
+          },
+        ],
+      },
+      {
+        id: 'c5_4',
+        question: 'ESCENA DE DECISIÓN ESPECIAL: Alumno A y Alumno B están frente a la máquina. El docente indica buscar información en Internet sobre animales del bosque. Alumno A agarra el mouse y abre otra cosa que no es la tarea. ¿Qué debe hacer Alumno B?',
+        situation: 'Alumno A se está distrayendo y usando el mouse para fines ajenos a la consigna.',
+        hint: 'Pista: recordarle la consigna con respeto ayuda a cuidar el tiempo de ambos.',
+        options: [
+          {
+            id: 'a',
+            text: 'Recordarle con amabilidad: "Recordá que el profe pidió buscar animales del bosque; busquemos eso juntos y luego nos turnamos". Si insiste, avisarle al docente con calma.',
+            isCorrect: true,
+            explanation: '¡Perfecto! Dialogar con respeto y recurrir al docente si es necesario es la actitud de un verdadero Guardián.',
+          },
+          {
+            id: 'b',
+            text: 'Darle un manotazo al teclado para cerrarle la ventana a la fuerza.',
+            isCorrect: false,
+            explanation: 'Golpear el teclado puede dañarlo y genera una pelea innecesaria.',
+          },
+          {
+            id: 'c',
+            text: 'Quedarse callado y dejar que pase la hora sin hacer el trabajo.',
+            isCorrect: false,
+            explanation: 'El trabajo es de los dos; es importante motivar al compañero a cumplir la meta.',
+          },
+        ],
+      },
+    ],
+  },
+
+  // -------------------------------------------------------------
+  // MUNDO 6: EL PORTAL RESPONSABLE
+  // -------------------------------------------------------------
+  {
+    id: 6,
+    name: 'El Portal Responsable',
+    shortName: 'Portal',
+    subtitle: 'Internet seguro, consignas escolares y respeto',
+    themeDescription: 'Navegación responsable, respeto por la privacidad de contraseñas y convivencia en la red.',
+    icon: '🌐',
+    ambientSoundTheme: 'portal',
+    color: {
+      bg: 'bg-rose-500',
+      border: 'border-rose-500',
+      text: 'text-rose-700 dark:text-rose-300',
+      cardBg: 'bg-rose-50 dark:bg-rose-950/40',
+      badgeBg: 'bg-rose-100 text-rose-800 dark:bg-rose-900/60 dark:text-rose-200',
+      gradient: 'from-rose-500 via-pink-600 to-purple-600',
+    },
+    badge: LAB_BADGES[5],
+    byteIntro: {
+      mood: 'alegria',
+      speech: '¡El Portal Responsable está abierto! Navegamos por los sitios indicados, cuidamos nuestras contraseñas y respetamos a todos en la red.',
+      accessory: 'visor cyber',
+    },
+    rules: [
+      {
+        id: 'r6_1',
+        title: 'Navegar en páginas autorizadas para la actividad',
+        description: 'Internet es un océano gigante. En la escuela navegamos exclusivamente por los sitios y enlaces que indica el docente.',
+        icon: '🧭',
+        goodPractice: 'Seguir la consigna de investigación escolar y consultar páginas educativas seguras.',
+        badPractice: 'Abrir juegos en línea o videos de YouTube que no tienen que ver con la clase.',
+        scene: {
+          formulaBefore: '🎮 DISTRACCIONES EN LA WEB',
+          symbol: '❌',
+          formulaAfter: '🎓 CONSIGNAS EDUCATIVAS',
+          headline: 'En la escuela usamos Internet para investigar y aprender en equipo.',
+        },
+        microscene: LAB_MICROSCENES.ms_6_1,
+      },
+      {
+        id: 'r6_2',
+        title: 'Cuidar tus contraseñas y datos personales',
+        description: 'Tu usuario de Google y tu clave son personales y secretas. Nunca las compartas con desconocidos ni las dejes abiertas en máquinas compartidas.',
+        icon: '🔑',
+        goodPractice: 'Cerrar la sesión de tu cuenta antes de que termine la clase.',
+        badPractice: 'Escribir tu contraseña en el pizarrón o prestarle tu cuenta a cualquiera.',
+        scene: {
+          formulaBefore: '🔓 CUENTA Y CLAVE ABIERTA',
+          symbol: '🚫',
+          formulaAfter: '🔒 CERRAR SESIÓN AL SALIR',
+          headline: 'Tus contraseñas son secretas: cerrás sesión al terminar tu trabajo.',
+        },
+        microscene: LAB_MICROSCENES.ms_6_4,
+      },
+      {
+        id: 'r6_3',
+        title: 'Comunicación respetuosa y compañerismo digital',
+        description: 'Detrás de cada pantalla hay una persona con sentimientos. En los documentos compartidos y foros nos comunicamos con amabilidad.',
+        icon: '💬',
+        goodPractice: 'Escribir comentarios constructivos, con palabras amables y sin mayúsculas sostenidas.',
+        badPractice: 'Insultar, burlarse de trabajos ajenos o hacer comentarios ofensivos.',
+        scene: {
+          formulaBefore: '😡 BURLAS O INSULTOS',
+          symbol: '❌',
+          formulaAfter: '🤝 PALABRAS CON RESPETO',
+          headline: 'Detrás de cada pantalla hay una persona: nos comunicamos con empatía.',
+        },
+        microscene: LAB_MICROSCENES.ms_6_2,
+      },
+      {
+        id: 'r6_4',
+        title: 'Avisar ante contenido extraño o incómodo',
+        description: 'Si buscando información aparece una imagen o texto que te hace sentir mal, no lo mires ni lo compartas: contale al docente.',
+        icon: '🛡️',
+        goodPractice: 'Cerrar la pestaña y pedirle ayuda al docente de inmediato.',
+        badPractice: 'Reenviar el contenido extraño al grupo de WhatsApp del grado.',
+        scene: {
+          formulaBefore: '⚠️ PÁGINA O MENSAJE EXTRAÑO',
+          symbol: '🚨',
+          formulaAfter: '🗣️ CONTARLE AL MAESTRO',
+          headline: 'Si algo en la web te genera dudas o incomodidad, avisale al profesor.',
+        },
+        microscene: LAB_MICROSCENES.ms_6_3,
+      },
+    ],
+    challenges: [
+      {
+        id: 'c6_1',
+        question: 'El profesor pide buscar información sobre animales autóctonos de la Patagonia. ¿Qué hacés en el navegador?',
+        situation: 'Tenés la ventana de Google abierta en la computadora.',
+        hint: 'Pista: concentrarse en la consigna escolar te permite terminar a tiempo y con excelencia.',
+        options: [
+          {
+            id: 'a',
+            text: 'Abrir una pestaña de juegos de tiros para jugar mientras el profe no mira.',
+            isCorrect: false,
+            explanation: 'Usar la sala para juegos no permitidos va en contra de las normas escolares.',
+          },
+          {
+            id: 'b',
+            text: 'Buscar información y fotos de los animales patagónicos como indica la tarea.',
+            isCorrect: true,
+            explanation: '¡Excelente! Usar la tecnología para cumplir el objetivo pedagógico es ser responsable.',
+          },
+          {
+            id: 'c',
+            text: 'Ponerte a ver videos graciosos de caídas.',
+            isCorrect: false,
+            explanation: 'Disfraza el tiempo de aprendizaje y retrasa la tarea de tu grupo.',
+          },
+        ],
+      },
+      {
+        id: 'c6_2',
+        question: 'Terminaste de usar tu cuenta de Google Classroom en la computadora de la escuela. ¿Cuál es el paso final fundamental?',
+        situation: 'La computadora será usada por otro alumno en el turno siguiente.',
+        hint: 'Pista: si dejas tu cuenta abierta, otra persona podría escribir o ver tus notas.',
+        options: [
+          {
+            id: 'a',
+            text: 'Hacer clic en tu foto de perfil y seleccionar "Cerrar sesión".',
+            isCorrect: true,
+            explanation: '¡Perfecto! Cerrar sesión protege tu privacidad, tus tareas y tus notas.',
+          },
+          {
+            id: 'b',
+            text: 'Dejar la sesión abierta para que el que venga después no tenga que loguearse.',
+            isCorrect: false,
+            explanation: 'Dejar tu cuenta abierta permite que otros envíen mensajes en tu nombre.',
+          },
+          {
+            id: 'c',
+            text: 'Anotar tu contraseña con fibrón en la mesa.',
+            isCorrect: false,
+            explanation: 'Las contraseñas son confidenciales y las mesas deben mantenerse limpias.',
+          },
+        ],
+      },
+      {
+        id: 'c6_3',
+        question: 'En un documento compartido de Google Docs, un compañero comete un error de ortografía. ¿Qué hacés?',
+        situation: 'Están trabajando en equipo en la misma presentación.',
+        hint: 'Pista: la corrección fraterna y respetuosa construye un mejor trabajo colaborativo.',
+        options: [
+          {
+            id: 'a',
+            text: 'Escribirle un comentario amable avisándole de la palabra para que pueda corregirla juntos.',
+            isCorrect: true,
+            explanation: '¡Brillante! El compañerismo y el respeto hacen crecer el trabajo en equipo.',
+          },
+          {
+            id: 'b',
+            text: 'Ponerle "¡QUÉ BURRO!" con letras gigantes en rojo.',
+            isCorrect: false,
+            explanation: 'Los comentarios agresivos lastiman y entorpecen el clima escolar.',
+          },
+          {
+            id: 'c',
+            text: 'Borrarle todo el texto sin decirle nada.',
+            isCorrect: false,
+            explanation: 'Borrar el trabajo del compañero sin hablar genera conflictos.',
+          },
+        ],
+      },
+      {
+        id: 'c6_4',
+        question: 'Al buscar una imagen para tu trabajo, encontrás una página con fotos o textos extraños que te hacen sentir incómodo. ¿Cuál es la mejor reacción?',
+        situation: 'Apareció contenido no apto para la escuela.',
+        hint: 'Pista: contale siempre a un adulto de confianza ante cosas raras en Internet.',
+        options: [
+          {
+            id: 'a',
+            text: 'Cerrar la ventana y avisarle al docente de inmediato para que bloquee ese sitio en la red escolar.',
+            isCorrect: true,
+            explanation: '¡Exacto! Contarle al docente con confianza ayuda a protegerte a vos y a toda la escuela.',
+          },
+          {
+            id: 'b',
+            text: 'Llamar a todos los compañeros para que vengan a ver la pantalla.',
+            isCorrect: false,
+            explanation: 'Eso solo genera alboroto y no resuelve la situación.',
+          },
+          {
+            id: 'c',
+            text: 'Guardar la página en favoritos.',
+            isCorrect: false,
+            explanation: 'Si un contenido es inapropiado, no debemos guardarlo ni compartirlo.',
+          },
+        ],
+      },
+    ],
+  },
+
+  // -------------------------------------------------------------
+  // MUNDO 7: EL MUNDO FINAL – LA GRAN SALA
+  // -------------------------------------------------------------
+  {
+    id: 7,
+    name: 'La Gran Sala',
+    shortName: 'La Gran Sala',
+    subtitle: 'Evaluación integradora de los Guardianes',
+    themeDescription: '10 desafíos combinando situaciones reales de todos los mundos. ¡Obtené 80% o más para consagrarte Guardián de la Sala!',
+    icon: '🏆',
+    ambientSoundTheme: 'final',
+    color: {
+      bg: 'bg-purple-600',
+      border: 'border-purple-600',
+      text: 'text-purple-700 dark:text-purple-300',
+      cardBg: 'bg-purple-50 dark:bg-purple-950/40',
+      badgeBg: 'bg-purple-100 text-purple-800 dark:bg-purple-900/60 dark:text-purple-200',
+      gradient: 'from-purple-600 via-indigo-600 to-amber-500',
+    },
+    badge: LAB_BADGES[6],
+    byteIntro: {
+      mood: 'victoria',
+      speech: '¡Lo lograste! Llegaste a La Gran Sala. Es momento de demostrar todo lo aprendido y consagrarte como Guardián Oficial.',
+      accessory: 'capa dorada y corona',
+    },
+    rules: [],
+    challenges: [], // Challenges for World 7 are dynamically served from the Final Challenge Bank below
+  },
+];
+
+// -------------------------------------------------------------
+// BANCO DE PREGUNTAS DEL DESAFÍO FINAL (10 preguntas integradoras)
+// -------------------------------------------------------------
+export const FINAL_LAB_EXAM_QUESTIONS: LabChallengeQuestion[] = [
+  {
+    id: 'final_1',
+    situation: '🎬 Escena 1: Una bebida cerca de una computadora.',
+    question: '¿Qué debería hacer el Guardián si ve una bebida cerca de una computadora?',
+    hint: 'Pista: los líquidos y los circuitos electrónicos nunca deben mezclarse.',
+    microscene: LAB_MICROSCENES.ms_1_1,
+    options: [
+      {
+        id: 'a',
+        text: 'Tomar la bebida apoyando el vaso o botella sobre el teclado.',
+        isCorrect: false,
+        explanation: 'Cualquier líquido sobre el teclado puede quemar la computadora.',
+      },
+      {
+        id: 'b',
+        text: 'Guardar la botella en la mochila o pedir permiso para tomar agua afuera, lejos de los equipos.',
+        isCorrect: true,
+        explanation: '¡Brillante! Cero bebidas cerca de las computadoras previene accidentes graves.',
+      },
+      {
+        id: 'c',
+        text: 'Pasarle un trago al compañero por encima del monitor.',
+        isCorrect: false,
+        explanation: 'Pasar líquidos por encima de las pantallas es sumamente peligroso.',
+      },
+    ],
+  },
+  {
+    id: 'final_2',
+    situation: '🎬 Escena 2: Un alumno tirando de un cable.',
+    question: '¿Qué debería hacer el Guardián si necesita desenchufar un equipo o ve a alguien tirando del cable?',
+    hint: 'Pista: nunca tironeamos del cable desde lejos para no romper los conectores.',
+    microscene: LAB_MICROSCENES.ms_4_1,
+    options: [
+      {
+        id: 'a',
+        text: 'Tironear del cable con fuerza desde lejos para que salga rápido.',
+        isCorrect: false,
+        explanation: 'Tirar del cable puede cortar los filamentos de cobre y provocar chispas peligrosas.',
+      },
+      {
+        id: 'b',
+        text: 'Pedir ayuda al docente o, si el adulto lo autoriza, sujetar firmemente desde la ficha plástica.',
+        isCorrect: true,
+        explanation: '¡Excelente! Sujetar desde la ficha plástica protege el cable y evita roturas.',
+      },
+      {
+        id: 'c',
+        text: 'Pisar el cable mientras se tira hacia arriba.',
+        isCorrect: false,
+        explanation: 'Pisar el cable daña el aislante protector.',
+      },
+    ],
+  },
+  {
+    id: 'final_3',
+    situation: '🎬 Escena 3: Un compañero quitándole el mouse a otro.',
+    question: '¿Qué debería hacer el Guardián cuando trabaja en equipo y a su compañero le cuesta encontrar una herramienta?',
+    hint: 'Pista: un verdadero guardián enseña con paciencia, sin quitar las herramientas de la mano.',
+    microscene: LAB_MICROSCENES.ms_5_1,
+    options: [
+      {
+        id: 'a',
+        text: 'Arrebatarle el mouse de la mano de un tirón para hacer clic uno mismo.',
+        isCorrect: false,
+        explanation: 'Quitar las herramientas de la mano es una falta de respeto y no le permite aprender a tu compañero.',
+      },
+      {
+        id: 'b',
+        text: 'Guiarlo con palabras amables señalando en el aire sin tocar la pantalla, para que él mismo descubra la herramienta.',
+        isCorrect: true,
+        explanation: '¡Brillante! Explicar con paciencia y respetar los turnos fortalece el compañerismo y el aprendizaje.',
+      },
+      {
+        id: 'c',
+        text: 'Burlarse de él y apagarle el monitor.',
+        isCorrect: false,
+        explanation: 'Las burlas dañan la convivencia y apagar el monitor interrumpe la clase.',
+      },
+    ],
+  },
+  {
+    id: 'final_4',
+    situation: '🎬 Escena 4: Un alumno dejando su espacio limpio.',
+    question: '¿Qué debería hacer el Guardián al terminar su actividad antes de salir al recreo?',
+    hint: 'Pista: pensá en dejar el equipo protegido y el espacio libre para caminar sin tropezar.',
+    microscene: LAB_MICROSCENES.ms_2_3,
+    options: [
+      {
+        id: 'a',
+        text: 'Cerrar sus sesiones, ordenar el teclado y mouse, tirar los papeles al cesto y arrimar la silla.',
+        isCorrect: true,
+        explanation: '¡Excelente! Dejás el puesto impecable y seguro para el siguiente grupo de alumnos.',
+      },
+      {
+        id: 'b',
+        text: 'Salir corriendo dejando la silla atravesada en el pasillo y papelitos en la mesa.',
+        isCorrect: false,
+        explanation: 'Dejar la silla desacomodada puede hacer caer a otro compañero.',
+      },
+      {
+        id: 'c',
+        text: 'Tirar la mochila al suelo y dejar todas las ventanas abiertas.',
+        isCorrect: false,
+        explanation: 'El orden y el cuidado del espacio es responsabilidad de cada alumno.',
+      },
+    ],
+  },
+  {
+    id: 'final_5',
+    situation: '🎬 Escena 5: Un alumno avisando al docente ante un problema.',
+    question: '¿Qué debería hacer el Guardián si ve un cable pelado, chispas o un mensaje extraño en la pantalla?',
+    hint: 'Pista: ante un peligro o fallo técnico, nunca se toca con las manos; se comunica a los adultos.',
+    microscene: LAB_MICROSCENES.ms_4_3,
+    options: [
+      {
+        id: 'a',
+        text: 'Tocar el cable o hacer clic desesperadamente en cualquier cartel desconocido.',
+        isCorrect: false,
+        explanation: '¡Nunca! Podrías sufrir una descarga o empeorar el error del equipo.',
+      },
+      {
+        id: 'b',
+        text: 'Alejarse con calma, no tocar nada y avisarle enseguida al docente a cargo.',
+        isCorrect: true,
+        explanation: '¡Excelente! Actuar con serenidad y avisar al docente evita accidentes en toda la sala.',
+      },
+      {
+        id: 'c',
+        text: 'Pegarle una patada a la CPU para que se arregle.',
+        isCorrect: false,
+        explanation: 'La fuerza bruta nunca soluciona fallas electrónicas y puede romper el equipo.',
+      },
+    ],
+  },
+  {
+    id: 'final_6',
+    situation: '🎬 Escena 6: Final de la jornada escolar y apagado de equipos.',
+    question: '¿Qué debería hacer el Guardián para apagar correctamente la computadora?',
+    hint: 'Pista: el sistema operativo tiene su propia función de apagado ordenado.',
+    microscene: LAB_MICROSCENES.ms_3_1,
+    options: [
+      {
+        id: 'a',
+        text: 'Hacer clic en Menú Inicio > Apagar y aguardar a que se cierre el sistema por completo.',
+        isCorrect: true,
+        explanation: '¡Correcto! Es la única forma segura que protege los archivos del disco rígido.',
+      },
+      {
+        id: 'b',
+        text: 'Pisar el interruptor de la zapatilla de piso o desenchufar de golpe.',
+        isCorrect: false,
+        explanation: 'Apagar cortando la energía corrompe el sistema operativo.',
+      },
+      {
+        id: 'c',
+        text: 'Dejar encendida la máquina y desenchufar el teclado.',
+        isCorrect: false,
+        explanation: 'Desenchufar periféricos no apaga la computadora y gasta energía innecesariamente.',
+      },
+    ],
+  },
+  {
+    id: 'final_7',
+    situation: '🎬 Escena 7: Un botón llamativo para descargar un juego en internet.',
+    question: '¿Qué debería hacer el Guardián si una página le ofrece descargar programas o juegos desconocidos?',
+    hint: 'Pista: pensá en virus y en mantener los equipos escolares protegidos para estudiar.',
+    microscene: LAB_MICROSCENES.ms_3_2,
+    options: [
+      {
+        id: 'a',
+        text: 'No descargar nada y consultar siempre con el docente antes de cualquier instalación.',
+        isCorrect: true,
+        explanation: '¡Excelente! Los equipos escolares están dedicados a fines educativos y deben estar protegidos contra virus.',
+      },
+      {
+        id: 'b',
+        text: 'Hacer clic inmediatamente en "Descargar ahora" para jugar rápido.',
+        isCorrect: false,
+        explanation: 'Descargar archivos de fuentes dudosas puede infectar la computadora de virus.',
+      },
+      {
+        id: 'c',
+        text: 'Copiar el archivo ejecutable a todas las computadoras de los compañeros.',
+        isCorrect: false,
+        explanation: 'Podrías propagar virus por toda la red de la escuela.',
+      },
+    ],
+  },
+  {
+    id: 'final_8',
+    situation: '🎬 Escena 8: Archivos de evaluación o trabajos de otros cursos en el escritorio.',
+    question: '¿Qué debería hacer el Guardián si encuentra en la computadora archivos o carpetas que no son suyos?',
+    hint: 'Pista: los archivos de los demás alumnos merecen el mismo respeto que sus pertenencias.',
+    microscene: LAB_MICROSCENES.ms_3_3,
+    options: [
+      {
+        id: 'a',
+        text: 'Abrirlos para curiosear o cambiarlos de lugar.',
+        isCorrect: false,
+        explanation: 'Eso viola la privacidad y perjudica el trabajo del docente y de otros grados.',
+      },
+      {
+        id: 'b',
+        text: 'Respetarlos y no abrirlos ni modificarlos; trabajar únicamente en su propia carpeta o usuario.',
+        isCorrect: true,
+        explanation: '¡Brillante! El respeto por los documentos ajenos es una marca de ética digital.',
+      },
+      {
+        id: 'c',
+        text: 'Borrar los archivos a la papelera de reciclaje.',
+        isCorrect: false,
+        explanation: 'Borrar archivos ajenos es una falta de respeto muy grave.',
+      },
+    ],
+  },
+  {
+    id: 'final_9',
+    situation: '🎬 Escena 9: Un formulario web pide nombre, dirección y número de teléfono.',
+    question: '¿Qué debería hacer el Guardián si una página web solicita datos personales o privados?',
+    hint: 'Pista: los datos de tu casa y teléfono son privados y nunca se escriben en páginas web.',
+    microscene: LAB_MICROSCENES.ms_6_4,
+    options: [
+      {
+        id: 'a',
+        text: 'Completar todos los datos para ser amable con la página.',
+        isCorrect: false,
+        explanation: 'Nunca entregues datos personales en páginas desconocidas.',
+      },
+      {
+        id: 'b',
+        text: 'No ingresar ningún dato privado, cerrar la ventana y avisar al docente o a un adulto de confianza.',
+        isCorrect: true,
+        explanation: '¡Muy bien! Cuidar la privacidad es la regla de oro para navegar seguros en internet.',
+      },
+      {
+        id: 'c',
+        text: 'Inventar los datos de un compañero del grado.',
+        isCorrect: false,
+        explanation: 'Poner datos de otras personas tampoco es seguro ni correcto.',
+      },
+    ],
+  },
+  {
+    id: 'final_10',
+    situation: '🎬 Escena 10: Desplazamiento y compromiso en la sala de informática.',
+    question: '¿Qué significa ser un verdadero "Guardián de la Sala de Informática"?',
+    hint: 'Pista: ser guardián incluye cuidar los equipos, las personas y las normas de convivencia.',
+    microscene: LAB_MICROSCENES.ms_2_1,
+    options: [
+      {
+        id: 'a',
+        text: 'Cuidar los equipos con delicadeza, mantener el orden, respetar las normas de seguridad eléctrica y usar la tecnología para aprender en equipo.',
+        isCorrect: true,
+        explanation: '¡RESPUESTA MAGISTRAL! ¡Sos un auténtico Guardián de la Sala de Informática!',
+      },
+      {
+        id: 'b',
+        text: 'Usar la computadora más rápida de la sala y no prestársela a nadie jamás.',
+        isCorrect: false,
+        explanation: 'Un guardián comparte, colabora y cuida a toda la comunidad escolar.',
+      },
+      {
+        id: 'c',
+        text: 'Apagar las computadoras de los compañeros en medio de la clase como broma.',
+        isCorrect: false,
+        explanation: 'Las bromas pesadas no forman parte del espíritu de un guardián.',
+      },
+    ],
+  },
+];
+
+// -------------------------------------------------------------
+// COFRES DEL TESORO OPCIONALES (Recompensas de exploración)
+// -------------------------------------------------------------
+export const LAB_TREASURE_CHESTS: LabTreasureChestConfig[] = [
+  {
+    id: 'chest_w1',
+    worldIdRequired: 1,
+    title: 'Cofre del Roble Tecnológico',
+    bonusStars: 3,
+    message: '¡Encontraste el cofre oculto en el follaje del bosque! Byte celebra tu curiosidad con estrellas de bonificación.',
+    icon: '🎁',
+    pos: { x: 12, y: 92 },
+  },
+  {
+    id: 'chest_w3',
+    worldIdRequired: 3,
+    title: 'Cofre de los Circuitos Seguros',
+    bonusStars: 3,
+    message: '¡Cofre digital abierto! Contiene energía y reconocimiento por proteger los programas escolares.',
+    icon: '💎',
+    pos: { x: 16, y: 64 },
+  },
+  {
+    id: 'chest_w5',
+    worldIdRequired: 5,
+    title: 'Cofre de la Amistad Dorada',
+    bonusStars: 3,
+    message: '¡El trabajo en equipo da sus frutos! Una recompensa dorada para un excelente compañero.',
+    icon: '👑',
+    pos: { x: 16, y: 32 },
+  },
+];
+
+// -------------------------------------------------------------
+// SECRETOS Y EASTER EGGS DEL MAPA (100% Opcionales)
+// -------------------------------------------------------------
+export const LAB_MAP_SECRETS: LabMapSecretConfig[] = [
+  {
+    id: 'secret_cave',
+    title: 'La Cueva de los Disquetes Antiguos',
+    hint: 'Dicen que en el desfiladero rocoso del valle hay una entrada misteriosa...',
+    discoveryMessage: '¡Descubriste la cueva secreta! Los antiguos guardianes guardaban aquí los primeros disquetes de la escuela.',
+    bonusStars: 1,
+    icon: '💾',
+    pos: { x: 86, y: 52 },
+  },
+  {
+    id: 'secret_bottle',
+    title: 'Mensaje en la Botella de la Costa',
+    hint: 'Mirá con atención en la arena dorada de la playa este...',
+    discoveryMessage: '¡Un mensaje de los docentes de la escuela!: "¡Gracias por cuidar las computadoras con tanto cariño y respeto!"',
+    bonusStars: 1,
+    icon: '📜',
+    pos: { x: 88, y: 88 },
+  },
+  {
+    id: 'secret_antenna',
+    title: 'La Antena Satelital Secreta',
+    hint: 'En lo alto de la colina de la Fortaleza Digital...',
+    discoveryMessage: '¡Señal segura sincronizada! La red de la sala está protegida contra virus y páginas dudosas.',
+    bonusStars: 1,
+    icon: '📡',
+    pos: { x: 18, y: 72 },
+  },
+];
+
